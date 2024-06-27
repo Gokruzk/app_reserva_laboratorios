@@ -23,8 +23,8 @@ export interface Country {
 }
 
 export interface UserLogin {
-  username: string;
-  password: string;
+  usuario: string;
+  contrasena: string;
 }
 
 export interface UserName {
