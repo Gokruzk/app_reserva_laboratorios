@@ -29,7 +29,7 @@ const RegisterForm = () => {
     const apellido = formdata.get("apellido") as string;
     const contrasena = formdata.get("password") as string;
     const celular = formdata.get("celular") as string;
-    const tipo_usuario = formdata.get("type_user") as string;
+    // const tipo_usuario = formdata.get("type_user") as string;
     const user: User = {
       nombre: nombre,
       usuario: usuario,
@@ -37,7 +37,7 @@ const RegisterForm = () => {
       correo: correo,
       contrasena: contrasena,
       celular: celular,
-      id_tipo: tipo_usuario,
+      id_tipo: "3",
     };
     console.log(user)
     addUserMutation.mutate({
@@ -161,7 +161,7 @@ const RegisterForm = () => {
                   maxLength={10}
                 />
               </div>
-              <label
+              {/* <label
                 htmlFor="type_user"
                 className="block text-sm font-medium text-gray-900 dark:text-white"
               >
@@ -177,7 +177,7 @@ const RegisterForm = () => {
                 </option>
                 <option value={1}>Estudiante</option>
                 <option value={2}>Profesor</option>
-              </select>
+              </select> */}
               <div>
                 <label
                   htmlFor="password"
