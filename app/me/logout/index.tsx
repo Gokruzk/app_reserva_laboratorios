@@ -1,9 +1,7 @@
 import { COOKIE_NAME } from "@/constants";
 import { cookies } from "next/headers";
-import { useRouter } from "next/navigation";
 
 export default function logout() {
-  const router = useRouter()
   try {
     cookies().set({
       name: COOKIE_NAME,
