@@ -21,6 +21,12 @@ export default function Home() {
               style="m-5 bg-red-500 sm:bg-orange-400 text-center hover:bg-red-200 py-5 px-8 font-bold text-white rounded"
               title="Nosotros"
             />
+
+              <LinkButton
+              href="/iniciousuario"
+              style="m-5 bg-red-500 sm:bg-orange-400 text-center hover:bg-red-200 py-5 px-8 font-bold text-white rounded"
+              title="ELIMINAR BOTON AL FINAL"
+            />
           </div>
         </div>
       </div>
