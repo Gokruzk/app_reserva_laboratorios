@@ -52,6 +52,12 @@ export default function Iniciousuario(){
                     <th scope="col" className="px-6 py-3">
                         HORARIO
                     </th>
+                    <th scope="col" className="px-6 py-3">
+                        CANCELAR
+                    </th>
+                    <th scope="col" className="px-6 py-3">
+                        MODIFICAR
+                    </th>
                 </tr>
             </thead>
             <tbody>
@@ -65,29 +71,14 @@ export default function Iniciousuario(){
                     <td className="px-6 py-4">
                         Laptop
                     </td>
-                </tr>
-                <tr className="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
-                    <th scope="row" className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                        Microsoft Surface Pro
-                    </th>
                     <td className="px-6 py-4">
-                        White
+                        Cancelar
                     </td>
                     <td className="px-6 py-4">
-                        Laptop PC
+                        Modificar
                     </td>
                 </tr>
-                <tr className="bg-white dark:bg-gray-800">
-                    <th scope="row" className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                        Magic Mouse 2
-                    </th>
-                    <td className="px-6 py-4">
-                        Black
-                    </td>
-                    <td className="px-6 py-4">
-                        Accessories
-                    </td>
-                </tr>
+            
             </tbody>
         </table>
     </div>
