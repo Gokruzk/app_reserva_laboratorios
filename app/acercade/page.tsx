@@ -49,4 +49,4 @@ export default function AboutMe() {
     </div>
   );
 }
->>>>>>> f6f15ed7d4efad93f6ef5e12fe48fcf1cfea6041
+
