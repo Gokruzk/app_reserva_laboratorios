@@ -14,7 +14,7 @@ export default function Regresar() {
             <LinkButton
               href="/login"
               style="m-5 bg-red-500 sm:bg-orange-400 text-center hover:bg-red-200 py-5 px-8 font-bold text-white rounded"
-              title="Login"
+              title="Iniciar Sesion"
             />
             <LinkButton
               href="/registro"
