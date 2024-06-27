@@ -32,21 +32,24 @@ export const getUser = async (usuario: string) => {
 export const addUser = async (user: User) => {
   try {
     const res = await userAPI.post("/usuarios", user);
-    if (res.data.status_code != 401) {
-      cookies().set({
-        name: COOKIE_NAME,
-        value: res.data.result["token"],
-        httpOnly: true,
-        sameSite: "strict",
-        path: "/",
-        maxAge: 60 * 60,
-      });
+    if (res.status == 200) {
+      const userlogin = { usuario: user.usuario, contrasena: user.contrasena };
+      const res = await userAPI.post("/login", userlogin);
+      console.log(res);
+      // cookies().set({
+      //   name: COOKIE_NAME,
+      //   value: res.data.result["token"],
+      //   httpOnly: true,
+      //   sameSite: "strict",
+      //   path: "/",
+      //   maxAge: 60 * 60,
+      // });
       return { status: 200 };
     } else {
       return { status: 401, error: "Error while registering user" };
     }
   } catch (error) {
-    console.error("Error during register");
+    console.error("Error during register", error);
   }
   return { status: 401, error: "Error while registering user" };
 };
@@ -57,12 +60,12 @@ export const updateUser = async (usuario: string, user: User) => {
     const res = await userAPI.put(`/usuarios/${usuario}`, user);
     if (res.data.status_code != 400) {
       const au_res = await auth({
-        username: user.usuario,
-        password: user.contrasena,
+        usuario: user.usuario,
+        contrasena: user.contrasena,
       });
       if (au_res.status == 200) {
-        updateSessionLocal(au_res.token);
-        return { status: 200, token: au_res.token };
+        // updateSessionLocal(au_res.token);
+        // return { status: 200, token: au_res.token };
       }
       return { status: 200 };
     } else {
@@ -78,22 +81,26 @@ export const updateUser = async (usuario: string, user: User) => {
 };
 
 export const auth = async (user: UserLogin) => {
+  console.log(user)
   try {
-    const data = await userAPI.post("/auth/signin", user);
-    if (data.data.status_code != 401) {
-      const token = data.data.result.token;
-      cookies().set({
-        name: COOKIE_NAME,
-        value: token,
-        httpOnly: true,
-        sameSite: "strict",
-        path: "/",
-        maxAge: 60 * 60,
-      });
-      return { status: 200, token: token };
-    } else {
-      return { status: 404, error: "Invalid username or password" };
-    }
+    const data = await userAPI.post("/login", user);
+    console.log(data);
+    // if (data.data.status_code != 401) {
+    //   const token = data.data.result.token;
+    //   cookies().set({
+    //     name: COOKIE_NAME,
+    //     value: token,
+    //     httpOnly: true,
+    //     sameSite: "strict",
+    //     path: "/",
+    //     maxAge: 60 * 60,
+    //   });
+      // return { status: 200, token: token };
+
+    // } else {
+    //   return { status: 404, error: "Invalid username or password" };
+    // }
+    return { status: 200 };
   } catch (error) {
     console.error("Error during authentication");
   }

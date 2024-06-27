@@ -26,29 +26,28 @@ function LoginForm() {
     const username = formdata.get("username") as string;
     const password = formdata.get("password") as string;
     const user = {
-      username: username,
-      password: password,
+      usuario: username,
+      contrasena: password,
     };
-    // addUserMutation.mutate({
-    //   ...user,
-    // });
+    addUserMutation.mutate({
+      ...user,
+    });
   };
-  // const addUserMutation = useMutation({
-  //   mutationFn: auth,
-  //   onSuccess: (data) => {
-  //     if (data.status === 200) {
-  //       alert("Login successfully");
-  //       // authUser(user);
-  //       router.push("/profile");
-  //     } else {
-  //       alert(`Authentication failed, ${data.error}`);
-  //     }
-  //   },
-  //   onError: (error) => {
-  //     console.log(error);
-  //     alert("An error occurred during authentication");
-  //   },
-  // });
+  const addUserMutation = useMutation({
+    mutationFn: auth,
+    onSuccess: (data) => {
+      if (data.status === 200) {
+        alert("Login successfully");
+        router.push("/iniciousuario");
+      } else {
+        alert(`Authentication failed, ${data.error}`);
+      }
+    },
+    onError: (error) => {
+      console.log(error);
+      alert("An error occurred during authentication");
+    },
+  });
   function togglePasswordVisibility() {
     const passwordInput = document.getElementById(
       "password"

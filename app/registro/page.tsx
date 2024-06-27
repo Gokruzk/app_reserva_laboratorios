@@ -27,7 +27,7 @@ const RegisterForm = () => {
     const usuario = formdata.get("usuario") as string;
     const nombre = formdata.get("nombre") as string;
     const apellido = formdata.get("apellido") as string;
-    const contrasena = formdata.get("contrasena") as string;
+    const contrasena = formdata.get("password") as string;
     const celular = formdata.get("celular") as string;
     const tipo_usuario = formdata.get("type_user") as string;
     const user: User = {
@@ -39,7 +39,7 @@ const RegisterForm = () => {
       celular: celular,
       id_tipo: tipo_usuario,
     };
-
+    console.log(user)
     addUserMutation.mutate({
       ...user,
     });
@@ -47,9 +47,10 @@ const RegisterForm = () => {
   const addUserMutation = useMutation({
     mutationFn: addUser,
     onSuccess: (data) => {
+      console.log(data.status)
       if (data.status === 200) {
         alert("User registered");
-        router.push("/profile");
+        router.push("/iniciousuario");
       } else {
         alert(`Register failed, ${data.error}`);
       }
@@ -144,6 +145,20 @@ const RegisterForm = () => {
                   className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                   placeholder="Apellido"
                   required
+                />
+                <label
+                  htmlFor="celular"
+                  className="block mt-4 mb-2 text-sm font-medium text-gray-900 dark:text-white"
+                >
+                  Celular
+                </label>
+                <input
+                  name="celular"
+                  id="celular"
+                  className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                  placeholder="Celular"
+                  required
+                  maxLength={10}
                 />
               </div>
               <label
