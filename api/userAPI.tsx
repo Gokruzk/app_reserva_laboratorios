@@ -18,8 +18,8 @@ const userAPI = axios.create({
 export const getUser = async (usuario: string) => {
   try {
     const res = await userAPI.get(`/usuarios/${usuario}`);
-    if (res.data.status_code != 204) {
-      return { status: 200, data: res.data.result };
+    if (res.status == 200) {
+      return { status: 200, data: res.data };
     } else {
       return { status: 400, error: "The user does not exist" };
     }
@@ -35,15 +35,15 @@ export const addUser = async (user: User) => {
     if (res.status == 200) {
       const userlogin = { usuario: user.usuario, contrasena: user.contrasena };
       const res = await userAPI.post("/login", userlogin);
-      console.log(res);
-      // cookies().set({
-      //   name: COOKIE_NAME,
-      //   value: res.data.result["token"],
-      //   httpOnly: true,
-      //   sameSite: "strict",
-      //   path: "/",
-      //   maxAge: 60 * 60,
-      // });
+      console.log(res.data);
+      cookies().set({
+        name: COOKIE_NAME,
+        value: res.data.access_token,
+        httpOnly: true,
+        sameSite: "strict",
+        path: "/",
+        maxAge: 60 * 60,
+      });
       return { status: 200 };
     } else {
       return { status: 401, error: "Error while registering user" };
@@ -81,26 +81,22 @@ export const updateUser = async (usuario: string, user: User) => {
 };
 
 export const auth = async (user: UserLogin) => {
-  console.log(user)
   try {
     const data = await userAPI.post("/login", user);
-    console.log(data);
-    // if (data.data.status_code != 401) {
-    //   const token = data.data.result.token;
-    //   cookies().set({
-    //     name: COOKIE_NAME,
-    //     value: token,
-    //     httpOnly: true,
-    //     sameSite: "strict",
-    //     path: "/",
-    //     maxAge: 60 * 60,
-    //   });
-      // return { status: 200, token: token };
-
-    // } else {
-    //   return { status: 404, error: "Invalid username or password" };
-    // }
-    return { status: 200 };
+    if (data.data.status != 401) {
+      const token = data.data.access_token;
+      cookies().set({
+        name: COOKIE_NAME,
+        value: token,
+        httpOnly: true,
+        sameSite: "strict",
+        path: "/",
+        maxAge: 60 * 60,
+      });
+      return { status: 200, token: token };
+    } else {
+      return { status: 404, error: "Invalid username or password" };
+    }
   } catch (error) {
     console.error("Error during authentication");
   }

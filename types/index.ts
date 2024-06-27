@@ -28,7 +28,7 @@ export interface UserLogin {
 }
 
 export interface UserName {
-  username: string;
+  usuario: string;
 }
 
 export interface UserResponse {

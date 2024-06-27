@@ -1,15 +1,16 @@
 "use client";
 
+import { getUser } from "@/api/userAPI";
 import LinkButton from "@/components/LinkButton";
-import useStore from "@/store/auth/authStore";
-import { UserResponse } from "@/types";
+import userStore from "@/store/auth/userStore";
+import { User, UserResponse } from "@/types";
 import axios, { AxiosError } from "axios";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 
 const ProfileLayout = ({ children }: { children: React.ReactNode }) => {
   const router = useRouter();
-  const authUser = useStore((state) => state.authUser);
+  const authUser = userStore((state) => state.authUser);
   const [isSuccess, setIsSuccess] = useState<boolean>(false);
 
   useEffect(() => {
@@ -18,11 +19,24 @@ const ProfileLayout = ({ children }: { children: React.ReactNode }) => {
       if (error) {
         router.push("/login");
       } else if (user) {
-        authUser(user);
-        router.push("/iniciousuario");
+        const us = await getUser(user.usuario).then((data) => {
+          return data;
+        });
+        if (us.status === 200) {
+          const newUser: User = {
+            id_usuario: us.data.id_usuario,
+            nombre: us.data.nombre,
+            usuario: us.data.usuario,
+            apellido: us.data.apellido,
+            correo: us.data.correo,
+            contrasena: us.data.contrasena,
+            celular: us.data.celular,
+            id_tipo: us.data.tipo_usuario,
+          };
+          authUser(newUser);
+          setIsSuccess(true);
+        }
       }
-      //If the user is logged
-      setIsSuccess(true);
     })();
   }, [router, authUser]);
 
@@ -36,10 +50,11 @@ const ProfileLayout = ({ children }: { children: React.ReactNode }) => {
   return (
     <main>
       <header>
+        {/*MENU*/}
         <nav className="bg-white border-gray-200 dark:bg-gray-900 dark:border-gray-700">
           <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
             <a
-              href="/"
+              href="#"
               className="flex items-center space-x-3 rtl:space-x-reverse"
             >
               {/* <img src="https://flowbite.com/docs/images/logo.svg" className="h-8" alt="Flowbite Logo" /> */}
@@ -77,10 +92,19 @@ const ProfileLayout = ({ children }: { children: React.ReactNode }) => {
             >
               <ul className="flex flex-col font-medium p-4 md:p-0 mt-4 border border-gray-100 rounded-lg bg-gray-50 md:space-x-8 rtl:space-x-reverse md:flex-row md:mt-0 md:border-0 md:bg-white dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700">
                 <li>
-                  <LinkButton
+                  <a
                     href="/"
-                    style="block py-2 px-3 text-white bg-blue-700 rounded md:bg-transparent md:text-blue-700 md:p-0 md:dark:text-blue-500 dark:bg-blue-600 md:dark:bg-transparent"
-                    title="Inicio"
+                    className="block py-2 px-3 text-white bg-blue-700 rounded md:bg-transparent md:text-blue-700 md:p-0 md:dark:text-blue-500 dark:bg-blue-600 md:dark:bg-transparent"
+                    aria-current="page"
+                  >
+                    Inicio
+                  </a>
+                </li>
+                <li>
+                  <LinkButton
+                    href="/laboratorios"
+                    style="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent"
+                    title="Laboratorios"
                   />
                 </li>
                 <li>
@@ -89,6 +113,14 @@ const ProfileLayout = ({ children }: { children: React.ReactNode }) => {
                     style="alingn-center block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent"
                     title="Acerca de"
                   />
+                </li>
+                <li>
+                  <a
+                    href="#"
+                    className="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent"
+                  >
+                    Cerrar Sesión
+                  </a>
                 </li>
               </ul>
             </div>
@@ -105,6 +137,7 @@ export default ProfileLayout;
 async function getUserSession(): Promise<UserResponse> {
   try {
     const { data } = await axios.get("/me");
+    console.log(data);
     return {
       user: data,
       error: null,

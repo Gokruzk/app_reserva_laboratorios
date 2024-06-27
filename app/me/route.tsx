@@ -20,13 +20,14 @@ export async function GET() {
   const data = await decrypt(value);
   try {
     const response = {
-      username: data["username"],
+      usuario: data["sub"],
     };
     return new Response(JSON.stringify(response));
   } catch (error) {
     return NextResponse.json(
       {
-        message: "Something went wrong", error,
+        message: "Something went wrong",
+        error,
       },
       {
         status: 401,
