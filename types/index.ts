@@ -1,12 +1,14 @@
 import { AxiosError } from "axios";
 
 export interface User {
-  id_usuario: string;
+  id_usuario?: string;
+  usuario: string;
   nombre: string;
   apellido: string;
   correo: string;
   contrasena: string;
   celular: string;
+  id_tipo: string
 }
 
 export interface LinkButtonProps {

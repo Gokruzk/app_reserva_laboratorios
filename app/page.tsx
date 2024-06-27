@@ -1,6 +1,6 @@
 import LinkButton from "@/components/LinkButton";
 
-export default function Home() {
+export default function Regresar() {
   return (
     <main className="bg-gray-50 dark:bg-gray-900">
       <div className="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0">
@@ -15,6 +15,11 @@ export default function Home() {
               href="/login"
               style="m-5 bg-red-500 sm:bg-orange-400 text-center hover:bg-red-200 py-5 px-8 font-bold text-white rounded"
               title="Login"
+            />
+            <LinkButton
+              href="/registro"
+              style="m-5 bg-red-500 sm:bg-orange-400 text-center hover:bg-red-200 py-5 px-8 font-bold text-white rounded"
+              title="Registro"
             />
             <LinkButton
               href="/acercade"
