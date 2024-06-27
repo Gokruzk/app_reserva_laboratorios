@@ -16,25 +16,11 @@ export default function AboutMe() {
             </p>
           </div>
           <div className="mt-5 text-center">
-            <h3 className="mb-1 text-2xl font-bold leading-normal text-gray-700 dark:text-gray-300">
-              Nigell Marcel Jama Oyarvide
+            <h3 className="mb-1 text-2xl font-bold leading-normal text-gray-700 dark:text-gray-300 text-justify p-5">
+              RESERVASNAME es un sitio desarrollado por la universidad para facilitar la reserva de los laboratorios de cada una de las distintas facultades
             </h3>
           </div>
-          <div className="mt-5 text-center">
-            <h3 className="mb-1 text-2xl font-bold leading-normal text-gray-700 dark:text-gray-300">
-              Nigell Marcel Jama Oyarvide
-            </h3>
-          </div>
-          <div className="mt-5 text-center">
-            <h3 className="mb-1 text-2xl font-bold leading-normal text-gray-700 dark:text-gray-300">
-              Nigell Marcel Jama Oyarvide
-            </h3>
-          </div>
-          <div className="mt-5 text-center">
-            <h3 className="mb-1 text-2xl font-bold leading-normal text-gray-700 dark:text-gray-300">
-              Nigell Marcel Jama Oyarvide
-            </h3>
-          </div>
+         
           <div className="relative h-6 overflow-hidden translate-y-6 rounded-b-xl">
             <div className="absolute flex -space-x-12 rounded-b-2xl">
               <div className="w-36 h-8 transition-colors duration-200 delay-75 transform skew-x-[35deg] bg-amber-400/90 group-hover:bg-amber-600/90 z-10"></div>
