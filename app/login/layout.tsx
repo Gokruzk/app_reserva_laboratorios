@@ -7,9 +7,10 @@ import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 
 const ProfileLayout = ({ children }: { children: React.ReactNode }) => {
+  const router = useRouter()
   const authUser = useStore((state) => state.authUser);
   const [isSuccess, setIsSuccess] = useState<boolean>(false);
-  const router = useRouter();
+
   useEffect(() => {
     (async () => {
       const { user, error } = await getUserSession();
@@ -22,7 +23,7 @@ const ProfileLayout = ({ children }: { children: React.ReactNode }) => {
       //If the user is logged
       setIsSuccess(true);
     })();
-  }, [router]);
+  }, [router, authUser]);
 
   if (!isSuccess) {
     return (

@@ -15,9 +15,9 @@ const userAPI = axios.create({
 
 //get user
 
-export const getUser = async (username: string) => {
+export const getUser = async (usuario: string) => {
   try {
-    const res = await userAPI.get(`/user/${username}`);
+    const res = await userAPI.get(`/usuarios/${usuario}`);
     if (res.data.status_code != 204) {
       return { status: 200, data: res.data.result };
     } else {
@@ -31,7 +31,7 @@ export const getUser = async (username: string) => {
 
 export const addUser = async (user: User) => {
   try {
-    const res = await userAPI.post("/user", user);
+    const res = await userAPI.post("/usuarios", user);
     if (res.data.status_code != 401) {
       cookies().set({
         name: COOKIE_NAME,
@@ -51,14 +51,14 @@ export const addUser = async (user: User) => {
   return { status: 401, error: "Error while registering user" };
 };
 
-export const updateUser = async (username: string, user: User_) => {
+export const updateUser = async (usuario: string, user: User) => {
   try {
     console.log(user);
-    const res = await userAPI.put(`/user/${username}`, user);
+    const res = await userAPI.put(`/usuarios/${usuario}`, user);
     if (res.data.status_code != 400) {
       const au_res = await auth({
-        username: user.username,
-        password: user.password,
+        username: user.usuario,
+        password: user.contrasena,
       });
       if (au_res.status == 200) {
         updateSessionLocal(au_res.token);

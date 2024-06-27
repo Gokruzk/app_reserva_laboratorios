@@ -1,19 +1,52 @@
-import LinkButton from "@/components/LinkButton";
+import Link from "next/link";
 
-export default function Iniciousuario(){
-    return(
-        <div className="content-center">
-            
-            <a href="#" className="block max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700">
-
-                <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">RESERVAS NAME</h5>
-                <p className="font-normal text-gray-700 dark:text-gray-400">
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Impedit quam magnam nemo similique sunt placeat debitis soluta dolores iste eaque. Dolorum et porro sed quas numquam fugit rerum dolore debitis.
-                </p>
-                <br /><br />
-                <LinkButton href="/acercade" style="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent" title="Regresar"/>
-            </a>
-
+export default function AboutMe() {
+  return (
+    <div className="flex items-center justify-center min-h-screen bg-gray-50 dark:bg-gray-900">
+      <div className="relative w-full group max-w-md min-w-0 mx-auto mt-6 mb-6 break-words bg-white border shadow-2xl dark:bg-gray-800 dark:border-gray-700 md:max-w-sm rounded-xl">
+        <div className="pb-6">
+          <div className="flex relative pl-5 pt-5">
+            <p className="text-sm font-light text-gray-500 dark:text-gray-400">
+              <Link
+                href={"/"}
+                className="font-medium text-primary-600 hover:underline dark:text-primary-500"
+              >
+                {"<-"} Regresar
+              </Link>
+            </p>
+          </div>
+          <div className="mt-5 text-center">
+            <h3 className="mb-1 text-2xl font-bold leading-normal text-gray-700 dark:text-gray-300">
+              Nigell Marcel Jama Oyarvide
+            </h3>
+          </div>
+          <div className="mt-5 text-center">
+            <h3 className="mb-1 text-2xl font-bold leading-normal text-gray-700 dark:text-gray-300">
+              Nigell Marcel Jama Oyarvide
+            </h3>
+          </div>
+          <div className="mt-5 text-center">
+            <h3 className="mb-1 text-2xl font-bold leading-normal text-gray-700 dark:text-gray-300">
+              Nigell Marcel Jama Oyarvide
+            </h3>
+          </div>
+          <div className="mt-5 text-center">
+            <h3 className="mb-1 text-2xl font-bold leading-normal text-gray-700 dark:text-gray-300">
+              Nigell Marcel Jama Oyarvide
+            </h3>
+          </div>
+          <div className="relative h-6 overflow-hidden translate-y-6 rounded-b-xl">
+            <div className="absolute flex -space-x-12 rounded-b-2xl">
+              <div className="w-36 h-8 transition-colors duration-200 delay-75 transform skew-x-[35deg] bg-amber-400/90 group-hover:bg-amber-600/90 z-10"></div>
+              <div className="w-28 h-8 transition-colors duration-200 delay-100 transform skew-x-[35deg] bg-amber-300/90 group-hover:bg-amber-500/90 z-20"></div>
+              <div className="w-28 h-8 transition-colors duration-200 delay-150 transform skew-x-[35deg] bg-amber-200/90 group-hover:bg-amber-400/90 z-30"></div>
+              <div className="w-28 h-8 transition-colors duration-200 delay-200 transform skew-x-[35deg] bg-amber-100/90 group-hover:bg-amber-300/90 z-40"></div>
+              <div className="w-28 h-8 transition-colors duration-200 delay-300 transform skew-x-[35deg] bg-amber-50/90 group-hover:bg-amber-200/90 z-50"></div>
+            </div>
+          </div>
         </div>
-    );
+      </div>
+    </div>
+  );
 }
+>>>>>>> f6f15ed7d4efad93f6ef5e12fe48fcf1cfea6041
