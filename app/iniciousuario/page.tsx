@@ -53,11 +53,12 @@ export default function Iniciousuario(){
                         HORARIO
                     </th>
                     <th scope="col" className="px-6 py-3">
-                        CANCELAR
+                        ELIMINAR RESERVACION
                     </th>
+                    {/*
                     <th scope="col" className="px-6 py-3">
                         MODIFICAR
-                    </th>
+                    </th>*/}
                 </tr>
             </thead>
             <tbody>
@@ -72,11 +73,12 @@ export default function Iniciousuario(){
                         Laptop
                     </td>
                     <td className="px-6 py-4">
-                        Cancelar
+                        <LinkButton href="/iniciousuario" style="" title="Eliminar"/>
                     </td>
+                    {/*
                     <td className="px-6 py-4">
-                        Modificar
-                    </td>
+                        <LinkButton href="/iniciousuario" style="" title="Modificar"/>
+                    </td>*/}
                 </tr>
             
             </tbody>
