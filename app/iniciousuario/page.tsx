@@ -1,4 +1,4 @@
-"use client"
+"use client";
 import LinkButton from "@/components/LinkButton";
 
 export default function Iniciousuario() {
@@ -49,12 +49,5 @@ export default function Iniciousuario() {
         </table>
       </div>
     </div>
-
-
-
-
-        
-
-
-);
+  );
 }

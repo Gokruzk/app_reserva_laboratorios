@@ -35,7 +35,6 @@ export const addUser = async (user: User) => {
     if (res.status == 200) {
       const userlogin = { usuario: user.usuario, contrasena: user.contrasena };
       const res = await userAPI.post("/login", userlogin);
-      console.log(res.data);
       cookies().set({
         name: COOKIE_NAME,
         value: res.data.access_token,

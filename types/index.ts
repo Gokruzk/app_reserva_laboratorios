@@ -57,3 +57,10 @@ export interface UserDates {
     description: string;
   };
 }
+
+export interface Labo {
+  id_laboratorio: number;
+  nombre_lab: string;
+  capacidad: number;
+  equipos: number;
+}

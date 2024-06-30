@@ -16,7 +16,7 @@ const ProfileLayout = ({ children }: { children: React.ReactNode }) => {
     (async () => {
       const { user, error } = await getUserSession();
       if (error) {
-        router.push("/login");
+        router.push("/registro");
       } else if (user) {
         authUser(user);
         router.push("/iniciousuario");
