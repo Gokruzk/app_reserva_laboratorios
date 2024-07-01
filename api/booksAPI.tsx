@@ -7,35 +7,35 @@ const labAPI = axios.create({
   baseURL: API_URL,
 });
 
-export const getLab = async (labId: string) => {
+export const getBooks = async () => {
   try {
-    const res = await labAPI.get(`/laboratorios/${labId}`);
+    const res = await labAPI.get(`/reservas`);
     if (res.status == 200) {
       return { status: 200, data: res.data };
     } else {
-      return { status: 400, error: "Error retreiving labs" };
+      return { status: 400, error: "Error consultando reservas" };
     }
   } catch (error) {
     console.log(error);
   }
-  return { status: 400, error: "Error consultando laboratorios" };
+  return { status: 400, error: "Error consultando reservas" };
 };
 
-export const getLabs = async () => {
+export const getBook = async (id_usuario: string) => {
   try {
-    const res = await labAPI.get(`/laboratorios`);
+    const res = await labAPI.get(`/reservas/user/${id_usuario}`);
     if (res.status == 200) {
       return { status: 200, data: res.data };
     } else {
-      return { status: 400, error: "Error retreiving labs" };
+      return { status: 400, error: "Error consultando reservas" };
     }
   } catch (error) {
     console.log(error);
   }
-  return { status: 400, error: "Error consultando laboratorios" };
+  return { status: 400, error: "Error consultando reservas" };
 };
 
-export const addLab = async (lab: Labo) => {
+export const deleteBook = async (lab: Labo) => {
   try {
     const res = await labAPI.post(`/laboratorios`, lab);
     if (res.status == 200) {
@@ -75,4 +75,18 @@ export const updateLab = async (lab: Labo) => {
     console.log(error);
   }
   return { status: 400, error: "Error actualizando laboratorio" };
+};
+
+export const bookLab = async (lab: BookL) => {
+  try {
+    const res = await labAPI.post(`/reservas`, lab);
+    if (res.status == 200) {
+      return { status: 200, data: res.data };
+    } else {
+      return { status: 400, error: "Error retreiving labs" };
+    }
+  } catch (error) {
+    console.log(error);
+  }
+  return { status: 400, error: "Error consultando laboratorios" };
 };

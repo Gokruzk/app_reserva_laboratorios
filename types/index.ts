@@ -8,18 +8,13 @@ export interface User {
   correo: string;
   contrasena: string;
   celular: string;
-  id_tipo: string
+  id_tipo: string;
 }
 
 export interface LinkButtonProps {
   title: string;
   href: string;
   style: string;
-}
-
-export interface Country {
-  cod_ubi: number;
-  country: string;
 }
 
 export interface UserLogin {
@@ -48,19 +43,35 @@ export interface UserState {
   removeSession: () => void;
 }
 
-export interface UserDates {
-  cod_date: number;
-  cod_user: number;
-  cod_description: number;
-  description: {
-    cod_description: number;
-    description: string;
-  };
-}
-
 export interface Labo {
-  id_laboratorio: number;
+  id_laboratorio?: number;
   nombre_lab: string;
   capacidad: number;
   equipos: number;
+}
+
+export interface ButtonProps {
+  title: string;
+  style: string;
+  onClick: () => void;
+}
+
+export interface Params {
+  params: {
+    labId: string;
+  };
+}
+
+export interface UpdateLabFormProps {
+  labId: string;
+}
+
+export interface BookL {
+  id_laboratorio: number;
+  id_usuario: number;
+  id_estado: number;
+  fecha: string;
+  hora_inicio: string;
+  hora_fin: string;
+  id_reserva?:string;
 }

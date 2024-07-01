@@ -8,7 +8,6 @@ import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import logout from "../me/logout";
 import userStore from "@/store/auth/userStore";
-import { auth } from "@/api/userAPI";
 
 const ProfileLayout = ({ children }: { children: React.ReactNode }) => {
   const router = useRouter();
