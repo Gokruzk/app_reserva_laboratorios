@@ -2,7 +2,7 @@
 import { getBook } from "@/api/booksAPI";
 import LinkButton from "@/components/LinkButton";
 import userStore from "@/store/auth/userStore";
-import { BookL } from "@/types";
+import { BookL, BookList } from "@/types";
 import {
   QueryClient,
   QueryClientProvider,
@@ -58,7 +58,10 @@ function Iniciousuario() {
                 FECHA
               </th>
               <th scope="col" className="px-6 py-3">
-                HORARIO
+                HORA INICIO
+              </th>
+              <th scope="col" className="px-6 py-3">
+                HORA FIN
               </th>
               <th scope="col" className="px-6 py-3">
                 ELIMINAR RESERVACION
@@ -70,7 +73,7 @@ function Iniciousuario() {
             </tr>
           </thead>
           <tbody>
-            {books?.data.map((books: BookL) => {
+            {books?.data.map((books: BookList) => {
               return (
                 <tr
                   key={books.id_reserva}
@@ -80,10 +83,11 @@ function Iniciousuario() {
                     scope="row"
                     className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white"
                   >
-                    {books.id_laboratorio}
+                    {books.laboratorio.nombre_lab}
                   </th>
                   <td className="px-6 py-4">{books.fecha}</td>
                   <td className="px-6 py-4">{books.hora_inicio}</td>
+                  <td className="px-6 py-4">{books.hora_fin}</td>
                   <td className="px-6 py-4">
                     <LinkButton
                       href="/iniciousuario"

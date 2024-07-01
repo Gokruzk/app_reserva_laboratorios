@@ -73,5 +73,9 @@ export interface BookL {
   fecha: string;
   hora_inicio: string;
   hora_fin: string;
-  id_reserva?:string;
+  id_reserva?: string;
+}
+
+export interface BookList extends BookL {
+  laboratorio: Labo;
 }
