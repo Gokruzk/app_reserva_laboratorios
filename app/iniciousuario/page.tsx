@@ -1,13 +1,17 @@
 "use client";
-import { getBook } from "@/api/booksAPI";
+import { deleteBook, getBook } from "@/api/booksAPI";
+import DeleteButton from "@/components/DeleteButton";
 import LinkButton from "@/components/LinkButton";
 import userStore from "@/store/auth/userStore";
 import { BookL, BookList } from "@/types";
 import {
   QueryClient,
   QueryClientProvider,
+  useMutation,
   useQuery,
 } from "@tanstack/react-query";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const queryClient = new QueryClient();
 
@@ -39,6 +43,24 @@ function Iniciousuario() {
     retry: 1000,
     retryDelay: (attempt) => Math.min(1000 * 2 ** attempt, 30000),
     refetchInterval: 3000, // Obtención en tiempo real cada 2 segundos
+  });
+
+  const showToastMessage = (mensaje: string, type: "success" | "error") => {
+    if (type === "success") {
+      toast.success(mensaje);
+    } else {
+      toast.error(mensaje);
+    }
+  };
+
+  const { mutate: deleteBookMutate } = useMutation({
+    mutationFn: deleteBook,
+    onSuccess: () => {
+      showToastMessage("Reseva cancelada correctamente", "success");
+    },
+    onError: (error) => {
+      toast.error(`Error cancelando reserva: ${error.message}`);
+    },
   });
 
   if (isLoading) return <div>Loading...</div>;
@@ -89,22 +111,23 @@ function Iniciousuario() {
                   <td className="px-6 py-4">{books.hora_inicio}</td>
                   <td className="px-6 py-4">{books.hora_fin}</td>
                   <td className="px-6 py-4">
-                    <LinkButton
-                      href="/iniciousuario"
+                    <DeleteButton
+                      title="Eliminar"
                       style=""
-                      title="Cancelar"
+                      onClick={() => {
+                        if (books.id_reserva) {
+                          deleteBookMutate(books.id_reserva);
+                        }
+                      }}
                     />
                   </td>
-                  {/*
-                    <td className="px-6 py-4">
-                        <LinkButton href="/iniciousuario" style="" title="Modificar"/>
-                    </td>*/}
                 </tr>
               );
             })}
           </tbody>
         </table>
       </div>
+      <ToastContainer />
     </div>
   );
 }

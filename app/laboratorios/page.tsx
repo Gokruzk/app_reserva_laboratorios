@@ -25,7 +25,6 @@ export default function LabsPage() {
 }
 
 function Labs() {
-  
   const user = userStore((state) => state.user);
 
   const {
@@ -55,7 +54,10 @@ function Labs() {
       showToastMessage("Laboratorio eliminado correctamente", "success");
     },
     onError: (error) => {
-      toast.error(`Error eliminando laboratorio: ${error.message}`);
+      showToastMessage(
+        `Error eliminando laboratorio: ${error.message}`,
+        "error"
+      );
     },
   });
 

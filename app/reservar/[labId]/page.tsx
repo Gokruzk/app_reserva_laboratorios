@@ -57,7 +57,6 @@ function HacerReserva({ labId }: UpdateLabFormProps) {
       hora_fin: hora_fin,
     };
 
-    console.log(lab)
     addUserMutation.mutate({
       ...lab,
     });

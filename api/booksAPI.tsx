@@ -35,9 +35,9 @@ export const getBook = async (id_usuario: string) => {
   return { status: 400, error: "Error consultando reservas" };
 };
 
-export const deleteBook = async (lab: Labo) => {
+export const deleteBook = async (id_reserva: string) => {
   try {
-    const res = await labAPI.post(`/laboratorios`, lab);
+    const res = await labAPI.delete(`/reservas/${id_reserva}`);
     if (res.status == 200) {
       return { status: 200, data: res.data };
     } else {
@@ -78,8 +78,10 @@ export const updateLab = async (lab: Labo) => {
 };
 
 export const bookLab = async (lab: BookL) => {
+  console.log(lab)
   try {
     const res = await labAPI.post(`/reservas`, lab);
+    console.log(res)
     if (res.status == 200) {
       return { status: 200, data: res.data };
     } else {
